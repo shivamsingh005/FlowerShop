@@ -1,0 +1,40 @@
+using AutoMapper;
+using FlowerShop.BLL.IServices;
+using FlowerShop.BLL.Services;
+using FlowerShop.DLL.DataModels;
+using FlowerShop.DLL.IRepository;
+using FlowerShop.DLL.Repository;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+builder.Services.AddAutoMapper();
+builder.Services.AddScoped<IFlowerService,FlowerService>();
+builder.Services.AddScoped<IFlowerRepository, FlowerRepository>();
+
+builder.Services.AddDbContext<FlowerShopManagementContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection")));
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
