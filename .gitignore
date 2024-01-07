@@ -1,0 +1,13 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/FlowerShop.DLL/obj
+/FlowerShop.DLL/bin/Debug/net6.0
+/.vs/Code/v17
+/.vs/FlowerShop/FileContentIndex
+/.vs/VSWorkspaceState.json
+/FlowerShop/bin/Debug/net6.0
+/FlowerShop/obj
+/FlowerShop.BLL/bin/Debug/net6.0
+/FlowerShop.BLL/obj
